@@ -1,6 +1,7 @@
 package com.multi.ex03.run;
 
 import com.multi.ex02.object.Person;
+import com.multi.ex02.object.PersonVO;
 
 public class Run {
 	public static void main(String[] args) {
@@ -36,9 +37,33 @@ public class Run {
 		String name = p.setAndGetName("김길동");
 		System.out.println(name);
 		System.out.println("----------------------------------");
-
-
-	
+		
 		//Person 실습 종료
+		
+		//PersonVO 실습 시작
+		PersonVO p2 = new PersonVO("홍길동", 27, "010-2345-3456", "서울시 노원구");
+		System.out.println(p2.toString());
+		p2.setName("박길동");
+		System.out.println(p2.toString());
+		
+		// 객체 배열 맛보기
+		PersonVO[] pArray = new PersonVO[5];
+		pArray[0] = new PersonVO("박길동", 21, "010-4234-5678", "서울시 강남구");
+		pArray[1] = new PersonVO("최길동", 41, "010-3234-5678", "서울시 강남구");
+		pArray[2] = new PersonVO("김길동", 34, "010-2234-5678", "서울시 강남구");
+		pArray[3] = new PersonVO("이길동", 53, "010-4234-5678", "서울시 강남구");
+		pArray[4] = new PersonVO("홍길동", 21, "010-5234-5678", "서울시 강남구");
+	
+		for(int i = 0; i < pArray.length; i++) {
+			System.out.println(pArray[i].toString());
+		}
+		
+		
+		
+		
+		//PersonVO 실습 종료
+	
+	
+	
 	}
 }
