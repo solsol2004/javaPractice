@@ -11,21 +11,23 @@ package com.multi.ex02.object;
 //Step 2. alt + shift + s 혹은 우클릭 -> Source로 접근하고, 아래부터 자동으로 생성한다.
 //		생성자, 필드 있는 생성자, toString, getter/setter 생성한다!
 //Step3. TODO 주석 일부를 제거하고 포맷팅을 맞춰준다.
-public class PersonVO /*extends Object*/{// 모든 객체는 Object를 부모로 가진다. 단, 선언하지 않아도 자동 상속
+
+public class PersonVO2 /*extends Object*/{// 모든 객체는 Object를 부모로 가진다. 단, 선언하지 않아도 자동 상속
 	private String name;
 	private int age;
 	private String phoneNum;
 	private String address;
+	private String pID;
 
 	
 	//인자 없는 생성자
 	//super(): 부모의 생성자를 호출하는 키워드
-	public PersonVO() {
+	public PersonVO2() {
 		super();
 	}
 
 	//모든 인자가 있는 생성자, 한번에 초기화 해줄 수 있다!
-	public PersonVO(String name, int age, String phoneNum, String address) {
+	public PersonVO2(String name, int age, String phoneNum, String address) {
 		super();
 		this.name = name;
 		this.age = age;
