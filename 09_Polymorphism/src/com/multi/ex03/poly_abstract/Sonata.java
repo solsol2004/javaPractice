@@ -1,6 +1,6 @@
 package com.multi.ex03.poly_abstract;
 
-public class Sonata extends Car {
+public class Sonata extends HyundaiCar {
 
 	public Sonata() {
 		super(2000); // 2000cc
@@ -16,7 +16,9 @@ public class Sonata extends Car {
 		System.out.println("소나타가 부르르르르릉!");
 	}
 	
-	public void sonataNickName() {
-		System.out.println("소가 타는 차");
+
+	@Override
+	public void nickName() {
+		System.out.println("소가 타는 차");	
 	}
 }

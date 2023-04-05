@@ -1,6 +1,6 @@
 package com.multi.ex03.poly_abstract;
 
-public class Bugatti extends Car{
+public class Bugatti extends HyundaiCar{
 
 	public Bugatti() {
 		super(8000); // 8000cc
@@ -16,7 +16,10 @@ public class Bugatti extends Car{
 		System.out.println("부와와오아와와오아앙");
 	}
 	
-	public void bugattiNickName() {
+
+	@Override
+	public void nickName() {
 		System.out.println("드림카");
+		
 	}
 }
