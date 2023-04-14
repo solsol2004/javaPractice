@@ -1,0 +1,229 @@
+I. 객체지향 프로그래밍
+	1. 객체(Object)란?
+	  - 컴공학) 현실에 존재하는 사물을 Object로 추상화 하여 표현한 모델
+	  - Instance : 객체가 실제 메모리에 생성된 실체화 된 상황 / 키워드 : new
+
+    2. Class란? 객체를 설계하기 위해 Java에서 제공하는 문법/설계도
+      - 멤버변수 : 객체 내부에서 선언된 변수, 객체에 종속 ex) id, name, password
+      - 메소드 : 객체에서 선언된 함수로 객체에 행동(알고리즘/로직)을 표현함 
+                ex) getter /  setter / toString / equals ... 
+      - 생성자 : Class와 이름이 동일한 메소드, 오버로딩 가능하여 다양한 생성자 생성가능
+      
+    3. 접근제한자 
+      - public    : 누구나 사용가능한 / 공용 제한자
+      - protected : 상속받은 자식이나, 같은 패키지 내에서 누구나 사용 가능
+      - (default) : 같은 패키지 내에서만 사용
+      - private   : 자신만 사용가능한 가장 강력한 제한자 / 외부에서 절대 접근 불가능
+     
+    4. 메소드
+      - 선언부 : [static][final][접근제한자] (Return Type) Name ( '인자' ...) 
+                ex) public static void main(String[] args) // 메인도 메소드
+      - 인자의 갯수는 제한이 없고, 이름의 길이 제한도 없음
+      - 리턴타입은 하나로만 선언 가능(Java에서는 다중 반환 되지 않음)
+      - 리턴값이 없을 경우 void로 선언 필요.
+      
+    5. 오버로딩 (Overloading)
+      - 메소드의 이름은 같고, 인자가 다른 메소드를 다중으로 선언할때 쓰는 기법
+        (c언어에서는 지원하지 않은 기능)
+      - 단, 리턴타입은 고려하지 않고 활용 가능.
+   
+    6. final 사용시
+      - 멤버변수 : 상수로 한번 초기화 하고 변경 불가
+      - 메소드 : 상속시에 자식에서 오버라이딩(재선언)이 되지 않음
+      - Class : 상속 불가함
+        -> 상수로만 주로 활용
+
+	7. static 사용시
+	   - 멤버변수 : 한 클래스당 하나의 멤버변수로 활용할때 -> Global화 
+	   - 메소드 : Class의 Instance의 생성 없이 활용 가능  ex) Object.hashCode();
+       - Class (내부 선언시) : 외부의 Class의 생성 없이 Type으로 활용가능
+       
+	   public class A{
+	   		static class B{};
+	   }
+	   
+II. 객체배열
+    선언법 : Type[] array = new Type[(배열 갯수)]; 
+	array[0] = new Type();
+	※주의해야할 점 : Type casting
+	
+	// Object 배열 쓰는 법
+	Object[] array = new Object[10];
+	array[0] = new NewType();
+	((NewType)array[0]).toString(); // 객체를 casting 하는 문법 
+
+      
+III. 상속?
+    : 부모와 자식간의 멤버변수와 메소드를 공유하거나 재정의 가능한 메커니즘
+     - 장점 : 재사용성 증가, 표준화, 다형성 활용이 가능
+   1. 상속 키워드 : extends
+     - class A extends B { ... } 
+   2. 부모 클래스 = 상위 클래스
+     - 상속의 대상이 되는 클래스로, 부모의 Type(Class이름)으로 자식의 Type을 대처 가능
+        -> 단, 부모의 Type으로 대체된 자식의 메소드는 호출 불가
+            = ((자식Type)object).methodA(); // 자식 타입으로 캐스팅 필요
+   3. 자식 클래스 = 하위 클래스
+     - 상속을 통해 부모의 Class를 재사용하는 클래스
+     - 자식의 Type으로 부모를 대처 불가 -> ClassCastException 발생 
+     
+     
+IV. 다형성
+   : 상속의 관계를 활용하여 부모의 Type으로 다양한 자식의 Type을 대체하는 기법
+     (컬랙션에서 주로 활용되는 기법)
+    
+    1. 필요성
+	  - Type을 일일히 선언하지 않고 다양한 객체를 동시에 활용하기 위해
+	     -> 컬랙션을 활용하기 위해.
+	     
+	2. 메소드 오버로딩 Over loading ★★★
+	  - 메소드의 이름은 같고, 다양한 인자를 다중으로 메소드를 선언 할 수 있는 기법
+	  - Class 내에서 활용하는 기법
+	  - 수평적 관계 
+	
+	3. 메소드 오버라이딩 Over Riding ★★★★★★
+      - 부모의 메소드를 자식이 같은 이름과 같은 인자를 통해 다시 재정의하는 기법
+      - 메소드 호출시 부모의 메소드를 대체해서 자식의 메소드 호출됨
+      - 상속간의 관계에서만 활용 가능
+      - 수직적 관계, @Overring
+      - 선언시 주의점
+      	1) 부모와 자식의 메소드 이름 동일
+      	2) 인자가 부모와 같아야함
+      	3) 리턴타입이 동일해야함
+      	4) 접근 제한자는 자식이 부모보다 같거나 넓어야함
+      	5) 예외 발생시 예외의 수가 동일해야하거나 자식이 줄일수 있음
+
+	4. 추상클래스? 생성이 불가능한 클래스로 주로 상속을 위해 활용 되는 설계 기법
+	  - class 앞에 abstract 키워드가 반드시 존재
+	  - 추상 클래스는 생성할수 없다. -> 자식이 상속받아 구현해야함
+	  - abstract 메소드는 몸통을 갖지 않고, 상속 받은 자식이 오버라이딩 해야함 (인터페이스 기능)
+	    ex ) abstract methodA(int value);
+	  - 멤버변수나 구현된 메소드는 자식에서 재활용 가능 (반만 완성된 형태로 구현 가능)
+	  - extends로 상속(일반 상속과 동일)
+	  	
+	5. Interface? 메소드의 구현부를 갖지 않고 순수 abstract 메소드로만 구성
+	  - abstract 메소드와 'public static final'의 상수 멤버 변수만 선언가능
+	  - 그리고 키워드를 생략해도 자동으로 생성함
+	  - implements로 구현한다. 
+	  - 실제 다중 상속이 가능하다. (추상 클래스나 일반 클래스는 불가)
+	  - 실제 Interface 역활을 수행한다.
+	    ★★★★★★ Spring에서 매우 중요
+	
+	6. instanceof 연산자
+	  - 객체의 Type을 확인하는 연산자
+	  - if(object instanceof A) { ...}
+
+V. API
+	1. String API
+	 - charAt() : 정해진 인텍스에 char 반환
+	 - length() : 길이 반환
+	 - subString() : 인자로 받은 위치의 문자열을 자르는 메소드
+	 - toUppperCase() : 대문자로 변환
+	 - toLowerCase() : 소문자로 변환
+	 - split() : 인자를 기준으로 문자열을 잘라 문자열 배열로 리턴하는 메소드
+	    -> 토큰자를떄 활용한다.
+	    -> String[] arr = "안 녕 하 세 요".split(" "); 
+	    -> arr[0]// "안"
+	    
+     1.2 StringTokenizer
+      - hasMoreTokens() : 토큰이 더 있는지 확인
+      - nextToken() 	: 다음 토큰 가져오기
+      - countTokens() 	: 갯수 가져오기
+
+	2. 기본형의 Wrapper Class
+	 - Byte, Short, Integer, Long
+	 - Float, Double
+	 - Character
+	 - Boolean
+	 - 주요 메소드 : parseInt("문자열") - 숫자인 문자열를 넣으면 실제 숫자/실수로 리턴
+	 			   (시리즈별로 모두 존재)
+	 
+	3. Date
+	 	Date day = new Date();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy년 MM월 dd일 E hh시 mm분 ss초");
+		String str = sdf.format(day);
+	
+	4. Math
+	 - min : 작은지 확인
+	 - max : 큰값인지 확인
+	 - abs : 절대값으로 변환
+	 - round : 소수 지정한 자릿수로 반올림합니다
+	 - floor : 소수 자릿수 내림 함수
+	
+VI. 제네릭
+	1. 제네릭이란?
+	   - Type을 외부에서 주입시키는 방법, <T>를 통해 선언하고 <String>으로 사용한다.
+	2. 사용방법
+	    class MyList<T> {
+	       T value = null
+	       MyList(T value){
+	       	this.value = value;
+	       }
+	     } 
+	    MyList<String> list = new MyList<>("안녕하세요?");
+	
+	3. 상속관계 표현
+	  - <? super Number> : ?는 모든 type을 받을 수 있음.
+
+
+VI-2 컬랙션 Collection
+1. List
+	ArrayList VVV - 사용법 확인 필요.
+	LinkedList
+	Vector
+		- add : 데이터 넣기
+		- set : 새로운 데이터로 교체
+		- size : 현재 사이즈
+		- remove : 데이터 제거하기
+		- get : index에서 데이터 반환
+	
+2. Set
+	treeSet
+	linkedHashSet
+	hashSet
+	주요 메소드 
+		- add() : 데이터 삽입
+		- isEmpty : 데이터 비었는지 확인
+		- size() : 현재 set의 크기 
+		- iterator() : iterator를 통해 순회 가능
+		
+3. Map
+	HashMap
+	LinkedHashMap 
+	TreeMap
+	- put(k,v) : 새로운 Key-Value 세트 삽입
+	- get(k) : Key를 통해 mapping된 객체 반환
+	- set(key,v) : 기존 key값에 새로운 값을 셋팅
+	- keySet() : 키의 set를 반환
+	- entrySet() : 키와 값의 set 반환
+
+VII. 예외 Exception	
+	1. 처리방법 2가지
+	   1) try - catch부 : 메소드 내에서 예외 책임
+	     try{
+	     	// 로직부
+	     } catch (Exception e){ V 하위 예외로 대체 가능
+	     	e.printstack();
+	     	// 예외 처리부
+	     }
+	   
+	   2) 메소드 뒤에 throws 선언 : 책임전가
+	    void method() throws ArithmeticException{ }
+	   
+	2. 주요한 Exception VVVV
+	 RuntimeException: 실행 간에 예외가 발생한 경우 
+	 	- 자식들 (부모의 Type으로 대체 가능) VVV
+ 		ArithmeticException : 0으로 나누는 등의 산술적인 예외 V
+ 		NegativeArraySizeException :  배열의 크기를 지정할 때 음수의 사용  V
+ 		NullPointerException : Null 객체의 메소드나 멤버 변수에 접근하고자 하는 경우 V
+ 		IndexOutOfBoundException :  배열이나 스트링 범위를 벗어날 때  V
+ 		
+	 IOException : 입출력과 관련된 예외 처리 
+	
+-------------------------------------------------
+
+
+
+
+
+
+
